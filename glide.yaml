@@ -1,0 +1,4 @@
+package: github.com/rtbaker/GoPiMessage
+import:
+- package: github.com/stianeikeland/go-rpio
+  version: ^3.0.0
