@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/rtbaker/GoPiMessage/pimessage"
 )
 
@@ -25,5 +27,17 @@ func main() {
 	}
 
 	display := pimessage.NewDisplay(displayConf)
-	display.Start()
+
+	if display == nil {
+		fmt.Println("Problem starting display")
+		return
+	}
+
+	// Make sure we clean up at the end
+	defer display.Finish()
+
+	error := display.Start()
+	if error != nil {
+		fmt.Println("Error starting display: ", error)
+	}
 }
